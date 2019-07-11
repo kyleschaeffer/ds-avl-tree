@@ -24,6 +24,66 @@ export class Tree<T> {
   }
 
   /**
+   * Use depth-first-traversal (DFT) to create an in-order array of tree values
+   *  - Sorted list of tree values
+   */
+  public get values(): T[] {
+    // Values array
+    const values: T[] = [];
+
+    // Recursively traverse tree for node values
+    function traverse(node: Node<T>): void {
+      if (!node) return;
+      traverse(node.left);
+      values.push(node.value);
+      traverse(node.right);
+    }
+    traverse(this.root);
+
+    return values;
+  }
+
+  /**
+   * Use depth-first-traversal (DFT) to create a pre-ordered array of tree values
+   *  - Could be good for creating a deep copy of tree values
+   */
+  public get valuesPreOrder(): T[] {
+    // Values array
+    const values: T[] = [];
+
+    // Recursively traverse tree for node values
+    function traverse(node: Node<T>): void {
+      if (!node) return;
+      values.push(node.value);
+      traverse(node.left);
+      traverse(node.right);
+    }
+    traverse(this.root);
+
+    return values;
+  }
+
+  /**
+   * Use depth-first-traversal (DFT) to create a post-ordered array of tree values
+   *  - Could be useful when deleting values from the tree
+   */
+  public get valuesPostOrder(): T[] {
+    // Values array
+    const values: T[] = [];
+
+    // Recursively traverse tree for node values
+    function traverse(node: Node<T>): void {
+      if (!node) return;
+      traverse(node.left);
+      traverse(node.right);
+      values.push(node.value);
+    }
+    traverse(this.root);
+
+    return values;
+  }
+
+  /**
    * Add a value to the tree
    */
   public add(...values: T[]): void {
