@@ -33,3 +33,8 @@ test('post-order array values are correct', () => {
   const tree = new Tree<number>(8, 3, 10, 1, 6, 14, 4, 7, 13);
   expect(tree.valuesPostOrder).toEqual([1, 4, 7, 6, 3, 10, 14, 13, 8]);
 });
+
+test('bft array values are correct', () => {
+  const tree = new Tree<string>('j', 'g', 'h', 'd', 'f', 'e', 'b', 'c', 'i', 'a', 'k');
+  expect(tree.bftValues).toEqual(['f', 'd', 'h', 'b', 'e', 'g', 'j', 'a', 'c', 'i', 'k']);
+});

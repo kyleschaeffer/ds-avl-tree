@@ -84,6 +84,27 @@ export class Tree<T> {
   }
 
   /**
+   * Use breadth-first-traversal (BFT) to create an array of tree values
+   *  - Stays closer to the root node
+   *  - Uses a queue to keep track of node values
+   */
+  public get bftValues(): T[] {
+    // Values array
+    const values: T[] = [];
+
+    // Use a queue to traverse tree and add values
+    const queue: Array<Node<T>> = [this.root];
+    while (queue.length) {
+      const node: Node<T> = queue.shift();
+      if (node.left) queue.push(node.left);
+      if (node.right) queue.push(node.right);
+      values.push(node.value);
+    }
+
+    return values;
+  }
+
+  /**
    * Add a value to the tree
    */
   public add(...values: T[]): void {
